@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cosmos-todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cosmos-todo
+  template:
+    metadata:
+      labels:
+        app: cosmos-todo
+    spec:
+      containers:
+      - name: cosmos-todo
+        image: #{CONTAINER-IMAGE}#:#{CONTAINER-VERSION}#
+        ports:
+        - containerPort: 80
+        env:
+        - name: COSMOSDB__DB_URL
+          value: "#{DB_URL}#"
+        - name: COSMOSDB__DB_SECRET
+          value: "#{DB_SECRET}#"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cosmos-todo-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: cosmos-todo
+  type: ClusterIP
