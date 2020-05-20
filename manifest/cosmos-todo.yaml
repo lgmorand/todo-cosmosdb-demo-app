@@ -16,7 +16,7 @@ spec:
       - name: cosmos-todo
         image: #{CONTAINER-IMAGE}#:#{CONTAINER-VERSION}#
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: COSMOSDB__DB_URL
           value: "#{DB_URL}#"
@@ -31,7 +31,7 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 80
+    targetPort: 8080
   selector:
     app: cosmos-todo
   type: ClusterIP
