@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: todocosmosdbdemoapp 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todocosmosdbdemoapp
+  template:
+    metadata:
+      labels:
+        app: todocosmosdbdemoapp 
+    spec:
+      containers:
+        - name: todocosmosdbdemoapp 
+          image: acrakflm.azurecr.io/todocosmosdbdemoapp
+          ports:
+          - containerPort: 443
