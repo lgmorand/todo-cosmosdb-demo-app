@@ -18,6 +18,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag todo-cosmosdb-demo-app:latest
       working-directory: ./src
+    - run: docker images
     - run: docker login --username"=${{ secrets.LOGIN }}" -p="${{ secrets.PASSWORD }}"
     - run: docker push lgmorand/todo-cosmosdb-demo-app
     
