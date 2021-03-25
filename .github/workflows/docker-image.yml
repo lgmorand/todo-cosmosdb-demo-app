@@ -20,5 +20,6 @@ jobs:
       working-directory: ./src
     - run: docker images
     - run: docker login --username"=${{ secrets.LOGIN }}" -p="${{ secrets.PASSWORD }}"
+    - run: docker tag todo-cosmosdb-demo-app:latest lgmorand/todo-cosmosdb-demo-app:latest
     - run: docker push lgmorand/todo-cosmosdb-demo-app:latest
     
